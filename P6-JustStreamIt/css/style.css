@@ -1,0 +1,25 @@
+*{
+    background-color: #1a1a1a;
+    color: #FFFFFF;
+}
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: red solid 1px;
+}
+header menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    border: red solid 1px;
+    he
+}
+.best-movie{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: green solid 1px;
+}
