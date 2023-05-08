@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 *{
     background-color: #1a1a1a;
     color: #FFFFFF;
@@ -7,16 +8,30 @@ header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border: red solid 1px;
+    border: blue solid 1px;
+    margin-left: 5vw;
+    margin-right: 5vw;
 }
 header menu{
     display: flex;
-    flex-direction: row;
+    flex-direction: row
     justify-content: space-between;
     list-style: none;
-    border: red solid 1px;
-    he
+    border: red solid 1px
 }
+header menu li{
+    display: flex;
+    text-transform: uppercase;
+    margin: 0 10px;
+    font-family: 'Oswald', sans-serif;
+
+}
+header menu li:hover{
+    text-decoration: none;
+    color: #C42021;
+    cursor: pointer;
+}
+
 .best-movie{
     display: flex;
     flex-direction: row;
