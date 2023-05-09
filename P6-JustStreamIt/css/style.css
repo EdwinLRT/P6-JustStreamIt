@@ -38,3 +38,19 @@ header menu li:hover{
     justify-content: space-between;
     border: green solid 1px;
 }
+.best-categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: yellow solid 1px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+.section-title{
+    display: flex;
+    font-family: sans-serif;
+    font-size: 2em;
+    width: 100%;
+    margin: 0 0 0 5vw;
+    padding: 0;
+}
