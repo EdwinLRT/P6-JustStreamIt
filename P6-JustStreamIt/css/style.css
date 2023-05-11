@@ -1,56 +1,186 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
-*{
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
     background-color: #1a1a1a;
     color: #FFFFFF;
 }
-header{
+
+header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border: blue solid 1px;
+    height: 10vh;
     margin-left: 5vw;
     margin-right: 5vw;
 }
-header menu{
+
+header menu {
     display: flex;
     flex-direction: row
     justify-content: space-between;
     list-style: none;
-    border: red solid 1px
 }
-header menu li{
+
+header menu li {
     display: flex;
     text-transform: uppercase;
+    font-size: 1.7em;
     margin: 0 10px;
     font-family: 'Oswald', sans-serif;
 
 }
-header menu li:hover{
+
+header menu li:hover {
     text-decoration: none;
     color: #C42021;
     cursor: pointer;
 }
 
-.best-movie{
+.best-movie {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     border: green solid 1px;
 }
-.best-categories {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border: yellow solid 1px;
-    margin-left: 5vw;
-    margin-right: 5vw;
-}
-.section-title{
+
+.section-title {
+    position: absolute;
     display: flex;
     font-family: sans-serif;
     font-size: 2em;
+    padding-left: 2vw;
+}
+
+.carousel-container {
     width: 100%;
-    margin: 0 0 0 5vw;
-    padding: 0;
+    height: 550px;
+    gap: 10px;
+    overflow-y: visible;
+    white-space: nowrap;
+    position: relative;
+}
+
+.carousel {
+    display: flex;
+    align-content: center;
+    position: relative;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+}
+
+.carousel-inner {
+    display: grid;
+    grid-template-columns: repeat(100, 1fr);
+    gap: 10px;
+
+}
+
+.carousel-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 5%;
+    width: 12vw;
+    height: 30vh;
+    margin: 15px;
+
+}
+
+.carousel-item:hover {
+    cursor: pointer;
+    filter: drop-shadow(8px 16px 10px rgba(165, 0, 33, 0.4));
+    transform: scale(1.2);
+    transition: 0.4s ease-out;
+
+}
+
+.overlay h6 {
+    padding: 5px 5px;
+    white-space: normal;
+    background-color: transparent;
+    pointer-events: none;
+    font-family: sans-serif;
+
+}
+
+.carousel-item .overlay {
+    position: absolute;
+    top: 10px;
+    max-width: 100%;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.carousel-item:hover .overlay {
+    opacity: 1;
+    z-index: 999;
+    cursor: pointer;
+    filter: drop-shadow(8px 16px 10px rgba(165, 0, 33, 0.4));
+    transition: filter 0.4s ease-out;
+}
+
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 10px;
+}
+
+.carousel-item img:hover {
+    filter: brightness(40%);
+    transition: filter 0.4s ease-out;
+}
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.carousel-prev {
+    transition: background-color 0.4s ease-out;
+    height: 100%;
+    left: 0px;
+    width: 6vw;
+}
+
+.carousel-prev:hover {
+    background-color: rgb(32 32 32 / 0.8);
+    color: #FFFFFF;
+    width: 6vw;
+}
+
+.carousel-next {
+    transition: background-color 0.4s ease-out;
+    height: 100%;
+    right: 0px;
+    width: 6vw;
+}
+
+.carousel-next:hover {
+    background-color: rgb(32 32 32 / 0.8);
+    color: #FFFFFF;
+    width: 6vw;
 }
