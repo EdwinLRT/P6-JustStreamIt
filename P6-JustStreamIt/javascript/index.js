@@ -128,6 +128,9 @@ async function buildCarousel(listOfMovies, htmlContainer) {
         <div class="carousel-item">
             <div class="overlay">
                 <h6>${movie.title}</h6>
+                <div class="buttons">
+                 <button>More...</button>
+                </div>
             </div>
             <img src="${movie.image_url}" alt="${movie.title}">
         </div>`;
