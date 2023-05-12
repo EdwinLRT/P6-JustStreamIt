@@ -42,24 +42,62 @@ header menu li:hover {
     cursor: pointer;
 }
 
-.best-movie {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border: green solid 1px;
+.movie {
+  width: 240px ;
+  height: 320px;
+  display: inline-block;
+  position: relative;
+  color: white;
+  padding: 0 2px;
+  font-size: 0.8rem;
+  transition: all 0.8s ease-in-out;
+}
+.movie img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
 }
 
+#highlightedMovie {
+    width: 100%;
+    height: 30vh;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: visible;
+    white-space: nowrap;
+    position: relative;
+    border: crimson 1px solid;
+}
+#highlightedMovie > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 0 0 5%;
+    width: 100%;
+    margin: 15px;
+    border: crimson 1px solid;
+}
+
+
 .section-title {
-    position: absolute;
     display: flex;
     font-family: sans-serif;
     font-size: 2em;
     padding-left: 2vw;
+    margin-bottom: -40px;
 }
 
 .carousel-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
-    height: 550px;
+    height: 30vh;
     gap: 10px;
     overflow-y: visible;
     white-space: nowrap;
@@ -76,26 +114,29 @@ header menu li:hover {
     overflow: hidden;
 
 }
-
-.carousel-inner {
-    display: grid;
-    grid-template-columns: repeat(100, 1fr);
-    gap: 10px;
-
+.slider {
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: visible;
+  white-space: nowrap;
+  position: relative;
+  padding-top: var(--slider-py);
+  padding-bottom: var(--slider-py);
 }
 
+
 .carousel-item {
-    display: flex;
+    display: inline-block;
+    position: relative;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     flex: 0 0 5%;
-    width: 12vw;
-    height: 30vh;
+    height: 320px;
+    width: 240px;
     margin: 15px;
 
 }
-
 .carousel-item:hover {
     cursor: pointer;
     filter: drop-shadow(8px 16px 10px rgba(0, 129, 204, 0.4));
@@ -159,9 +200,7 @@ header menu li:hover {
 .carousel-prev,
 .carousel-next {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 10px;
+    bottom: 50%;
     font-size: 20px;
     background-color: transparent;
     border: none;
@@ -171,9 +210,10 @@ header menu li:hover {
 .carousel-prev {
     transition: background-color 0.4s ease-out;
     border-radius: 0px 15px 15px 0px;
-    height: 100%;
     left: 0px;
-    width: 6vw;
+    font-size: 30px;
+    font-weight: bold;
+    color: #FFFFFF;
 }
 
 .carousel-prev:hover {
@@ -185,13 +225,15 @@ header menu li:hover {
 .carousel-next {
     transition: background-color 0.4s ease-out;
     border-radius: 15px 0px 0px 15px;
-    height: 100%;
     right: 0px;
-    width: 6vw;
+    width: 8vw;
+    font-size: 30px;
+    font-weight: bold;
+    color: #FFFFFF;
 }
 
 .carousel-next:hover {
     background-color: rgb(0 129 204 / 0.7);
     color: #FFFFFF;
-    width: 6vw;
+    width: 8vw;
 }
