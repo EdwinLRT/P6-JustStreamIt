@@ -56,6 +56,42 @@ async function getAllCategories() {
     return allCategories;
 }
 
+/**
+ * Get the highlighted movie infos
+ * @param highlightedMovieUrl
+ * @returns {Promise<void>}
+ */
+async function gethighlightedMovieInfos(highlightedMovieUrl) {
+    fetch(highlightedMovieUrl)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Network response error. API is not responding.");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            highlightedMovie_img.innerHTML = "<img src=" + data.image_url + " alt=" + data.title + ">";
+            highlightedMovie_infos.innerHTML = "<h2>" + data.title + "</h2>" +
+                "<div>" + "<h6> Synopsis : </h6>"+"<p>" + data.description + "</p>" + "</div>"+
+                "<div>" + "<h6> Réalisateurs : </h6>"+"<p>" + data.writers + "</p>" + "</div>"+
+                "<div>" + "<h6> Note IMDB :</h6>"+"<p id='highlightedMovie_score'>" + data.avg_vote + "</p>" + "</div>"+
+                "<div>" + "<h6> Genre : </h6>"+"<p>"+ data.genres + "</p>" + "</div>"+
+                "<div>" + "<h6> Année : </h6>"+"<p>" +  data.year + "</p>" + "</div>" +
+                "<div>" + "<button id='more_button'>"+"Plus d'infos"+"</button>"
+                +"<button id='addToList_button'>"+"Ajouter à ma liste"+"</button>" +"</div>";
+                
+                
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+}
+
+gethighlightedMovieInfos(highlightedMovieUrl)
+
+
 
 /**
  * Get the best movies of all categories
@@ -137,145 +173,238 @@ async function buildCarousel(listOfMovies, htmlContainer) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    /** Best categories - display in div id : topratedmovies */
-    // const topratedmovies = document.getElementById('carouselInner-topratedmovies');
-    // const listOfMovies = await getBestMovies(bestImdbScoresUrl, numberOfBestMovies);
-    // buildCarousel(listOfMovies, topratedmovies);
-
-    /** Category 1 - display in div id : category1movies */
-    const category1movies = document.getElementById('carouselInner-category1movies');
-    const bestMoviesinCat1 = await getBestMoviesInCategory(category1, numberOfMoviesInCategory1);
-    buildCarousel(bestMoviesinCat1, category1movies)
-
-    /** Category 2 - display in div id : category2movies */
-    const category2movies = document.getElementById('carouselInner-category2movies');
-    const bestMoviesinCat2 = await getBestMoviesInCategory(category2, numberOfMoviesInCategory2);
-    buildCarousel(bestMoviesinCat2, category2movies)
-
-    /** Category 3 - display in div id : category3movies */
-    const category3movies = document.getElementById('carouselInner-category3movies');
-    const bestMoviesinCat3 = await getBestMoviesInCategory(category3, numberOfMoviesInCategory3);
-    buildCarousel(bestMoviesinCat3, category3movies)
-
-});
-
-/** TESTS */
-
-
-// const slider = document.querySelector("#carouselInner-topratedmovies")
-// const indicators = document.querySelectorAll(".indicator");
-
-// let baseSliderWidth = slider.offsetWidth;
-let activeIndex = 0; // the current page on the slider
-document.addEventListener('DOMContentLoaded', async () => {
-    let movies = await getBestMoviesInCategory(category1, numberOfMoviesInCategory1)
-
 // Fill the slider with all the movies in the "movies" array
-    function populateSlider() {
-        const newMovieTemplate = document.getElementById("movie0");
-        const sliderContent = document.querySelector("#carouselInner-topratedmovies")
+function populateSlider(movies, slider, carousel) {
+  const newMovieTemplate = document.getElementById("movie0");
+  const sliderContent = document.querySelector(carousel);
 
-        movies.forEach((image, index) => {
-            const newMovie = document.createElement("div");
-            newMovie.className = "movie";
-            newMovie.id = `movie${index}`;
+  movies.forEach((image, index) => {
+    const newMovie = document.createElement("div");
+    newMovie.className = "movie";
+    newMovie.id = `movie${index}`;
 
-            const img = document.createElement("img");
-            img.src = image.image_url;
-            img.alt = "Movie Image";
-            newMovie.appendChild(img);
+    const img = document.createElement("img");
+    img.src = image.image_url;
+    img.alt = "Movie Image";
+    newMovie.appendChild(img);
 
-            sliderContent.insertBefore(newMovie, sliderContent.lastChild);
-        });
-    }
-    populateSlider();
-    const slider = document.querySelector("#carouselInner-topratedmovies")
-    const indicators = document.querySelectorAll(".indicator");
-    const btnLeft = document.getElementById("carouselPrev");
-    const btnRight = document.getElementById("carouselNext");
-
-    function updateIndicators(index) {
-        indicators.forEach((indicator) => {
-            indicator.classList.remove("active");
-        });
-        let newActiveIndicator = indicators[index];
-        newActiveIndicator.classList.add("active");
-    }
-
-
-    btnLeft.addEventListener("click", (e) => {
-        let movieWidth = document.querySelector(".movie").getBoundingClientRect()
-            .width;
-        let scrollDistance = movieWidth * 6; // Scroll the length of 6 movies.
-
-        slider.scrollBy({
-            top: 0,
-            left: -scrollDistance,
-            behavior: "smooth",
-        });
-        activeIndex = (activeIndex - 1) % 3;
-        console.log(activeIndex);
-        updateIndicators(activeIndex);
-    });
-    btnRight.addEventListener("click", (e) => {
-        let movieWidth = document.querySelector(".movie").getBoundingClientRect()
-            .width;
-        let scrollDistance = movieWidth * 6; // Scroll the length of 6 movies.
-
-        console.log(`movieWidth = ${movieWidth}`);
-        console.log(`scrolling right ${scrollDistance}`);
-
-        // if we're on the last page
-        if (activeIndex == 2) {
-            // duplicate all the items in the slider (this is how we make 'looping' slider)
-            populateSlider();
-            slider.scrollBy({
-                top: 0,
-                left: +scrollDistance,
-                behavior: "smooth",
-            });
-            activeIndex = 0;
-            updateIndicators(activeIndex);
-        } else {
-            slider.scrollBy({
-                top: 0,
-                left: +scrollDistance,
-                behavior: "smooth",
-            });
-            activeIndex = (activeIndex + 1) % 3;
-            console.log(activeIndex);
-            updateIndicators(activeIndex);
-        }
-    });
-});
-
-async function gethighlightedMovieInfos(highlightedMovieUrl) {
-    fetch(highlightedMovieUrl)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Network response error. API is not responding.");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
-            highlightedMovie_img.innerHTML = "<img src=" + data.image_url + " alt=" + data.title + ">";
-            highlightedMovie_infos.innerHTML = "<h2>" + data.title + "</h2>" +
-                "<div>" + "<h6> Synopsis : </h6>"+"<p>" + data.description + "</p>" + "</div>"+
-                "<div>" + "<h6> Réalisateurs : </h6>"+"<p>" + data.writers + "</p>" + "</div>"+
-                "<div>" + "<h6> Note IMDB :</h6>"+"<p id='highlightedMovie_score'>" + data.avg_vote + "</p>" + "</div>"+
-                "<div>" + "<h6> Genre : </h6>"+"<p>"+ data.genres + "</p>" + "</div>"+
-                "<div>" + "<h6> Année : </h6>"+"<p>" +  data.year + "</p>" + "</div>" +
-                "<div>" + "<button id='more_button'>"+"Plus d'infos"+"</button>"
-                +"<button id='addToList_button'>"+"Ajouter à ma liste"+"</button>" +"</div>";
-                
-                
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-
+    sliderContent.insertBefore(newMovie, sliderContent.lastChild);
+    
+  });
+  return sliderContent;
 }
 
-gethighlightedMovieInfos(highlightedMovieUrl)
+
+
+
+
+
+
+let activeIndex = 0;
+
+function btnLeft(slider) {
+  let movieWidth = slider.querySelector(".movie").getBoundingClientRect().width;
+  let scrollDistance = movieWidth * 6; // Scroll the length of 6 movies.
+
+  slider.scrollBy({
+    top: 0,
+    left: -scrollDistance,
+    behavior: "smooth",
+  });
+
+  activeIndex = (activeIndex - 1) % 3;
+  console.log(activeIndex);
+  //updateIndicators(activeIndex);
+}
+
+function btnRight(slider, movies, slider, carousel) {
+  let movieWidth = slider.querySelector(".movie").getBoundingClientRect().width;
+  let scrollDistance = movieWidth * 6; // Scroll the length of 6 movies.
+
+  console.log(`movieWidth = ${movieWidth}`);
+  console.log(`scrolling right ${scrollDistance}`);
+
+  // if we're on the last page
+  if (activeIndex == 2) {
+    populateSlider(movies, slider, carousel); // duplicate all the items in the slider (this is how we make 'looping' slider)
+    slider.scrollBy({
+      top: 0,
+      left: +scrollDistance,
+      behavior: "smooth",
+    });
+
+    activeIndex = 0;
+    //updateIndicators(activeIndex);
+  } else {
+    slider.scrollBy({
+      top: 0,
+      left: +scrollDistance,
+      behavior: "smooth",
+    });
+
+    activeIndex = (activeIndex + 1) % 3;
+    console.log(activeIndex);
+    //updateIndicators(activeIndex);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  let movies_topRated  = await getBestMovies(bestImdbScoresUrl, numberOfBestMovies);
+  let movies_category1 = await getBestMoviesInCategory(category1, numberOfMoviesInCategory1);
+  let movies_category2 = await getBestMoviesInCategory(category2, numberOfMoviesInCategory2);
+  let movies_category3 = await getBestMoviesInCategory(category3, numberOfMoviesInCategory3);
+
+  let carousel_topRated = '#carouselInner-topratedmovies';
+  let carousel_category1 = "#carouselInner-category1";
+  let carousel_category2 = "#carouselInner-category2";
+  let carousel_category3 = "#carouselInner-category3";
+
+  const sliderTopRatedMovies = document.querySelector("#carouselInner-topratedmovies");
+  const sliderCategory1 = document.querySelector("#carouselInner-category1");
+  const sliderCategory2 = document.querySelector("#carouselInner-category2");
+  const sliderCategory3 = document.querySelector("#carouselInner-category3");
+
+  populateSlider(movies_topRated, sliderTopRatedMovies, carousel_topRated);
+  populateSlider(movies_category1, sliderCategory1, carousel_category1);
+  populateSlider(movies_category2, sliderCategory2, carousel_category2);
+  populateSlider(movies_category3, sliderCategory3, carousel_category3);
+
+  const indicators = document.querySelectorAll(".indicator");
+  const btnLeftTopRatedMovies = document.getElementById("carouselPrev");
+  const btnRightTopRatedMovies = document.getElementById("carouselNext");
+  const btnLeftCategory1 = document.getElementById("carouselPrev-category1");
+  const btnRightCategory1 = document.getElementById("carouselNext-category1");
+  const btnLeftCategory2 = document.getElementById("carouselPrev-category2");
+  const btnRightCategory2 = document.getElementById("carouselNext-category2");
+  const btnLeftCategory3 = document.getElementById("carouselPrev-category3");
+  const btnRightCategory3 = document.getElementById("carouselNext-category3");
+
+
+  btnLeftTopRatedMovies.addEventListener("click", (e) => {
+    btnLeft(sliderTopRatedMovies, movies_topRated, sliderTopRatedMovies, carousel_topRated);
+  });
+
+  btnRightTopRatedMovies.addEventListener("click", (e) => {
+    btnRight(sliderTopRatedMovies, movies_topRated, sliderTopRatedMovies, carousel_topRated);
+  });
+
+  btnLeftCategory1.addEventListener("click", (e) => {
+    btnLeft(sliderCategory1, movies_category1, sliderCategory1, carousel_category1  );
+  });
+
+  btnRightCategory1.addEventListener("click", (e) => {
+    btnRight(sliderCategory1, movies_category1, sliderCategory1, carousel_category1);
+  });
+
+  btnLeftCategory2.addEventListener("click", (e) => {
+    btnLeft(sliderCategory2, movies_category2, sliderCategory2, carousel_category2);
+  });
+
+  btnRightCategory2.addEventListener("click", (e) => {
+    btnRight(sliderCategory2, movies_category2, sliderCategory2, carousel_category2);
+  });
+
+  btnLeftCategory3.addEventListener("click", (e) => {
+    btnLeft(sliderCategory3, movies_category3, sliderCategory3, carousel_category3  );
+  });
+
+  btnRightCategory3.addEventListener("click", (e) => {
+    btnRight(sliderCategory3, movies_category3, sliderCategory3, carousel_category3);
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let activeIndex = 0; // the current page on the slider
+// document.addEventListener('DOMContentLoaded', async () => {
+//     let movies_topRated  = await getBestMovies(bestImdbScoresUrl, numberOfBestMovies)
+//     let movies_category1 = await getBestMoviesInCategory(category1, numberOfMoviesInCategory1)
+//     let movies_category2 = await getBestMoviesInCategory(category2, numberOfMoviesInCategory2)
+//     let movies_category3 = await getBestMoviesInCategory(category3, numberOfMoviesInCategory3)
+//    
+//     let carousel_topRated = '#carouselInner-topratedmovies'
+//     let carousel_category1 = "#carouselInner-category1"
+//     let carousel_category2 = "#carouselInner-category2"
+//     let carousel_category3 = "#carouselInner-category3"
+//    
+//     const sliderTopRatedMovies = document.querySelector("#carouselInner-topratedmovies")
+//     const sliderCategory1 = document.querySelector("#carouselInner-category1")
+//     const sliderCategory2 = document.querySelector("#carouselInner-category2")
+//     const sliderCategory3 = document.querySelector("#carouselInner-category3")
+//    
+//     let sliderTopRatedMovies = populateSlider(movies_topRated, sliderTopRatedMovies, carousel_topRated);
+//     let sliderCategory1 = populateSlider(movies_category1, sliderCategory1, carousel_category1);
+//     let sliderCategory2 = populateSlider(movies_category2, sliderCategory2, carousel_category2);
+//     let sliderCategory3 = populateSlider(movies_category3, sliderCategory3, carousel_category3);
+//
+//    
+//     const indicators = document.querySelectorAll(".indicator");
+//     const btnLeft = document.getElementById("carouselPrev");
+//     const btnRight = document.getElementById("carouselNext");
+
+    // function updateIndicators(index) {
+    //     indicators.forEach((indicator) => {
+    //         indicator.classList.remove("active");
+    //     });
+    //     let newActiveIndicator = indicators[index];
+    //     newActiveIndicator.classList.add("active");
+    // }
+    //
+    //
+    // btnLeft.addEventListener("click", (e) => {
+    //     let movieWidth = document.querySelector(".movie").getBoundingClientRect()
+    //         .width;
+    //     let scrollDistance = movieWidth * 6; // Scroll the length of 6 movies.
+    //
+    //     slider.scrollBy({
+    //         top: 0,
+    //         left: -scrollDistance,
+    //         behavior: "smooth",
+    //     });
+    //     activeIndex = (activeIndex - 1) % 3;
+    //     console.log(activeIndex);
+    //     updateIndicators(activeIndex);
+    // });
+    // btnRight.addEventListener("click", (e) => {
+    //     let movieWidth = document.querySelector(".movie").getBoundingClientRect()
+    //         .width;
+    //     let scrollDistance = movieWidth * 6; // Scroll the length of 6 movies.
+    //
+    //     console.log(`movieWidth = ${movieWidth}`);
+    //     console.log(`scrolling right ${scrollDistance}`);
+    //
+    //     // if we're on the last page
+    //     if (activeIndex == 2) {
+    //         // duplicate all the items in the slider (this is how we make 'looping' slider)
+    //         populateSlider();
+    //         slider.scrollBy({
+    //             top: 0,
+    //             left: +scrollDistance,
+    //             behavior: "smooth",
+    //         });
+    //         activeIndex = 0;
+    //         updateIndicators(activeIndex);
+    //     } else {
+    //         slider.scrollBy({
+    //             top: 0,
+    //             left: +scrollDistance,
+    //             behavior: "smooth",
+    //         });
+    //         activeIndex = (activeIndex + 1) % 3;
+    //         console.log(activeIndex);
+    //         updateIndicators(activeIndex);
+    //     }
+    // });
+});
+
+
+

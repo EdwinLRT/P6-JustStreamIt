@@ -210,6 +210,14 @@ header menu li:hover {
   height: 100%;
   width: 100%;
   border-radius: 10px;
+  transition: filter 0.6s ease-out;
+}
+.movie:hover > img {
+  filter: brightness(40%);
+  transform: scale(1.1);
+  position: relative;
+  z-index: 999;
+  transition: all 0.6s ease-out;
 }
 
 
@@ -219,7 +227,7 @@ header menu li:hover {
     font-family: sans-serif;
     font-size: 2em;
     padding-left: 2vw;
-    margin-bottom: -40px;
+
 }
 
 .carousel-container {
@@ -235,6 +243,7 @@ header menu li:hover {
 
 .carousel {
     display: flex;
+    justify-content: center;
     align-content: center;
     align-items: center;
     width: 100%;
@@ -243,7 +252,7 @@ header menu li:hover {
 
 }
 .slider {
-  width: 100%;
+  width: 1210px;
   overflow-x: hidden;
   overflow-y: visible;
   white-space: nowrap;
