@@ -283,8 +283,8 @@ function openModal(movie) {
       modalImage.src = data.image_url;
       modalTitle.textContent = data.title;
       modalDescription.textContent = data.description;
-      modalImdbScore.textContent = "Note : " + data.imdb_score;
-      modalYear.textContent = "Année : " + data.year;
+      modalImdbScore.textContent = "Note IMDB : " + data.imdb_score;
+      modalYear.textContent = "Année de sortie : " + data.year;
       modalGenres.textContent = "Genres : " + data.genres;
       modalActors.textContent = "Acteurs : " + data.actors;
       modalDirectors.textContent = "Réalisateurs : " + data.directors;
