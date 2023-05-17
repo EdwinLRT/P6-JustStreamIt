@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="./images/favicon.png" type="image/x-icon">
     <script src="./javascript/index.js"></script>
+    <script src="https://kit.fontawesome.com/8e94f5f2de.js" crossorigin="anonymous"></script>
     <title>JustStreamIt</title>
 </head>
 <body>
@@ -35,9 +36,11 @@
 
             <div class="slider" id="carouselInner-topratedmovies">
             </div>
-            <button class="carousel-prev" id="carouselPrev">Previous
+            <button class="carousel-prev" id="carouselPrev">
+                <i class="fa-solid fa-chevron-left"></i>
             </button>
-            <button class="carousel-next" id="carouselNext">Next
+            <button class="carousel-next" id="carouselNext">
+                <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
     </div>
@@ -55,9 +58,11 @@
 
             <div class="slider" id="carouselInner-category1">
             </div>
-            <button class="carousel-prev" id="carouselPrev-category1">Previous
+            <button class="carousel-prev" id="carouselPrev-category1">
+                <i class="fa-solid fa-chevron-left"></i>
             </button>
-            <button class="carousel-next" id="carouselNext-category1">Next
+            <button class="carousel-next" id="carouselNext-category1">
+                <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
     </div>
@@ -76,9 +81,11 @@
 
             <div class="slider" id="carouselInner-category2"></div>
             </div>
-            <button class="carousel-prev" id="carouselPrev-category2">Previous
+            <button class="carousel-prev" id="carouselPrev-category2">
+                <i class="fa-solid fa-chevron-left"></i>
             </button>
-            <button class="carousel-next" id="carouselNext-category2">Next
+            <button class="carousel-next" id="carouselNext-category2">
+                <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
     </div>
@@ -96,13 +103,34 @@
             <div class="slider" id="carouselInner-category3">
 
             </div>
-            <button class="carousel-prev" id="carouselPrev-category3">Previous
+            <button class="carousel-prev" id="carouselPrev-category3">
+                <i class="fa-solid fa-chevron-left"></i>
             </button>
-            <button class="carousel-next" id="carouselNext-category3">Next
+            <button class="carousel-next" id="carouselNext-category3">
+                <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
     </div>
 </section>
+
+<div class="modal" id="myModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+      <div id="modalLeftColumn">
+          <img id="modalImg" src="" alt="">
+          <p id="modalImdbScore">Note</p>
+          <p id="modalYear">Année</p>
+      </div>
+      <div id="modalRightColumn">
+          <h2 id="modalTitle"></h2>
+          <p id="modalGenres">genres</p>
+          <p id="modalDescription">description</p>
+          <p id="modalActors">Acteurs</p>
+          <p id="modalDirectors">Réalisateurs</p>
+      </div>
+
+  </div>
+</div>
 
 
 

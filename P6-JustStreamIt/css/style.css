@@ -54,7 +54,7 @@ header menu li:hover {
     position: relative;
     width: 100%;
     padding-top: 13vh;
-    padding-bottom: 4vh ;
+    padding-bottom: 4vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -65,18 +65,19 @@ header menu li:hover {
     background-position: center;
     background-repeat: no-repeat;
 }
-#highlightedMovie_title{
+
+#highlightedMovie_title {
     display: flex;
     width: 80%;
     align-content: center;
     justify-content: center;
     font-family: sans-serif;
     font-size: 2em;
-    padding : 0;
+    padding: 0;
     margin-top: 40px;
 }
 
-#highlightedMovie_container{
+#highlightedMovie_container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -85,7 +86,7 @@ header menu li:hover {
     width: 100%;
 }
 
-#highlightedMovie_img{
+#highlightedMovie_img {
     display: flex;
     justify-content: center;
     width: 20%;
@@ -93,16 +94,17 @@ header menu li:hover {
     margin-left: 8%;
 }
 
-#highlightedMovie_img > img{
+#highlightedMovie_img > img {
     border-radius: 8px;
 }
-#highlightedMovie_img > img:hover{
+
+#highlightedMovie_img > img:hover {
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }
 
 
-#highlightedMovie_infos{
+#highlightedMovie_infos {
     width: 62%;
     background-color: rgb(0 0 0 / 30%);
     margin: 20px;
@@ -110,25 +112,28 @@ header menu li:hover {
     border-radius: 10px;
     max-width: 1500px;
 }
-#highlightedMovie_infos > h2{
+
+#highlightedMovie_infos > h2 {
     display: flex;
     flex-direction: column;
     font-family: Oswald, sans-serif;
     font-size: 3em;
-    padding : 0;
+    padding: 0;
     margin: 0;
     flex-wrap: wrap;
 
 }
-#highlightedMovie_infos > div{
+
+#highlightedMovie_infos > div {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     text-overflow: ellipsis;
-    margin-left : 1vw
+    margin-left: 1vw
 
 }
+
 #highlightedMovie_infos > div > h6 {
     display: flex;
     padding-left: 1vw;
@@ -138,7 +143,8 @@ header menu li:hover {
     text-overflow: ellipsis;
     margin: 0;
 }
-#highlightedMovie_score{
+
+#highlightedMovie_score {
     font-family: 'Oswald', sans-serif;
     font-weight: 800;
     color: black;
@@ -146,28 +152,31 @@ header menu li:hover {
     border-radius: 4px;
     background-color: #f4c519;
 }
-#highlightedMovie_infos > p{
+
+#highlightedMovie_infos > p {
     font-family: 'Oswald', sans-serif;
     font-weight: lighter;
-    text-overflow: ellipsis ;
+    text-overflow: ellipsis;
     margin: 10px;
 
 
 }
-#highlightedMovie_infos > div:nth-child(7){
-    width: 50%  ;
+
+#highlightedMovie_infos > div:nth-child(7) {
+    width: 50%;
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-left: 55%;
-    margin-top: -5% ;
+    margin-top: -5%;
     min-height: 12vh;
 }
-#addToList_button{
-    color: black ;
+
+#addToList_button {
+    color: black;
     background-color: rgb(255, 255, 255, 0.6);
     height: 50px;
-    width:180px;
+    width: 180px;
     border: none;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
     border-radius: 6px;
@@ -175,15 +184,17 @@ header menu li:hover {
     margin: 20px;
     font-size: inherit;
 }
-#addToList_button:hover{
+
+#addToList_button:hover {
     background-color: rgb(90, 175, 148, 1);
     cursor: pointer;
 }
-#more_button{
-    color: black ;
+
+#more_button {
+    color: black;
     background-color: rgb(255, 255, 255, 0.6);
     height: 50px;
-    width:160px;
+    width: 160px;
     border: none;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
     border-radius: 6px;
@@ -191,36 +202,61 @@ header menu li:hover {
     margin: 20px;
     font-size: inherit;
 }
-#more_button:hover{
+
+#more_button:hover {
     background-color: rgb(255 255 255 / 1);
     cursor: pointer;
 }
 
 .movie {
-  width: 240px ;
-  display: inline-block;
-  position: relative;
-  color: white;
-  padding: 0 2px;
-  font-size: 0.8rem;
-  transition: all 0.8s ease-in-out;
+    width: 240px;
+    display: inline-block;
+    position: relative;
+    color: white;
+    padding: 0 2px;
+    font-size: 0.8rem;
+    transition: all 0.8s ease-in-out;
+    transform-origin: center center;
 }
+
+.movie:hover {
+    transform: scale(1.05);
+    z-index: 2;
+    transition: all 0.6s ease-out;
+}
+
 .movie img {
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-  border-radius: 10px;
-  transition: filter 0.6s ease-out;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    transition: filter 0.6s ease-out;
 }
+
 .movie:hover > img {
-  filter: brightness(40%);
-  transform: scale(1.1);
-  position: relative;
-  z-index: 999;
-  transition: all 0.6s ease-out;
+    filter: brightness(40%);
+}
+
+.movie > .movie_title {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.movie:hover .movie_title {
+    display: block;
+    z-index: 10;
 }
 
 
+.carousel_section {
+    background: rgb(9, 41, 56);
+    background: linear-gradient(0deg, rgba(9, 41, 56, 0) 0%, rgba(13, 62, 85, 1) 50%, rgba(13, 62, 85, 0) 100%);
+}
 
 .section-title {
     display: flex;
@@ -236,9 +272,9 @@ header menu li:hover {
     justify-content: center;
     width: 100%;
     gap: 10px;
-    overflow-y: visible;
+    overflow: hidden;
     white-space: nowrap;
-    position: relative;
+    position: absolute;
 }
 
 .carousel {
@@ -246,18 +282,21 @@ header menu li:hover {
     justify-content: center;
     align-content: center;
     align-items: center;
+    min-width: 100%;
     width: 100%;
     height: 100%;
     overflow: hidden;
 
 }
+
 .slider {
-  width: 1210px;
-  overflow-x: hidden;
-  overflow-y: visible;
-  white-space: nowrap;
-  padding-top: 20px;
-  padding-bottom: 20px;
+    width: 70%;
+    overflow-x: hidden;
+
+    overflow-y: visible;
+    white-space: nowrap;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 
@@ -273,6 +312,7 @@ header menu li:hover {
     margin: 15px;
 
 }
+
 .carousel-item:hover {
     cursor: pointer;
     filter: drop-shadow(8px 16px 10px rgba(0, 129, 204, 0.4));
@@ -303,7 +343,8 @@ header menu li:hover {
     z-index: 0;
     pointer-events: none;
 }
-.buttons{
+
+.buttons {
     background: none;
     border: none;
     padding: 0;
@@ -315,7 +356,7 @@ header menu li:hover {
 
 .carousel-item:hover .overlay {
     opacity: 1;
-    z-index: 999;
+    z-index: 2;
     cursor: pointer;
     transition: filter 0.4s ease-out;
 }
@@ -337,17 +378,21 @@ header menu li:hover {
 .carousel-next {
     position: absolute;
     bottom: 50%;
-    font-size: 20px;
+    font-size: 50px;
     background-color: transparent;
     border: none;
     cursor: pointer;
+    z-index: 999;
 }
 
 .carousel-prev {
     transition: background-color 0.4s ease-out;
-    border-radius: 0px 15px 15px 0px;
+    height: 70px;
+    width: 70px;
+    border-radius: 35px;
+    border-radius: ;
     left: 0px;
-    font-size: 30px;
+    margin-left: 2vw;
     font-weight: bold;
     color: #FFFFFF;
 }
@@ -355,15 +400,15 @@ header menu li:hover {
 .carousel-prev:hover {
     background-color: rgb(0 129 204 / 0.7);
     color: #FFFFFF;
-    width: 6vw;
 }
 
 .carousel-next {
     transition: background-color 0.4s ease-out;
-    border-radius: 15px 0px 0px 15px;
+    height: 70px;
+    width: 70px;
+    border-radius: 35px;
     right: 0px;
-    width: 8vw;
-    font-size: 30px;
+    margin-right: 2vw;
     font-weight: bold;
     color: #FFFFFF;
 }
@@ -371,10 +416,51 @@ header menu li:hover {
 .carousel-next:hover {
     background-color: rgb(0 129 204 / 0.7);
     color: #FFFFFF;
-    width: 8vw;
 }
 
 
-.carousel_section{
+.carousel_section {
     height: 500px;
+}
+
+
+/*Movie Pop-Up*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 600px;
+    min-height: 600px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    background-color: rgba(5, 24, 33, 0.8);
+    background-image: linear-gradient(135deg, rgba(5, 24, 33, 0.8) 23%, #209cd5 100%);
+    border-radius: 30px;
+}
+
+;
+
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: red;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
 }
