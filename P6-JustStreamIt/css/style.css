@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 html {
 }
@@ -30,7 +31,7 @@ header {
 
 header menu {
     display: flex;
-    flex-direction: row
+    flex-direction: row;
     justify-content: space-between;
     list-style: none;
 }
@@ -218,6 +219,9 @@ header menu li:hover {
     transition: all 0.8s ease-in-out;
     transform-origin: center center;
 }
+.movie > p.movie_id {
+    display: none;
+}
 
 .movie:hover {
     transform: scale(1.05);
@@ -390,8 +394,7 @@ header menu li:hover {
     height: 70px;
     width: 70px;
     border-radius: 35px;
-    border-radius: ;
-    left: 0px;
+    left: 0;
     margin-left: 2vw;
     font-weight: bold;
     color: #FFFFFF;
@@ -407,7 +410,7 @@ header menu li:hover {
     height: 70px;
     width: 70px;
     border-radius: 35px;
-    right: 0px;
+    right: 0;
     margin-right: 2vw;
     font-weight: bold;
     color: #FFFFFF;
@@ -442,7 +445,7 @@ header menu li:hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    min-width: 50vw;
+    min-width: 70vw;
     min-height: 30vh;
     transform: translate(-50%, -50%);
     background-color: white;
@@ -454,12 +457,17 @@ header menu li:hover {
 }
 
 #modalLeftColumn{
-    border: red 1px solid;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    width: 50%;
+    min-width: 30%;
+}
+
+#modalRated,
+#modalPublished,
+#modalDuration{
+    font-family : "Roboto"  , sans-serif;
 }
 
 #modalLeftColumn img{
@@ -469,6 +477,7 @@ header menu li:hover {
     max-height: 320px;
     object-fit: cover;
     border-radius: 10px;
+    margin-top: 20px;
 }
 #modalImdbScore{
     font-family: 'Oswald', sans-serif;
@@ -482,36 +491,36 @@ header menu li:hover {
 
 
 #modalRightColumn{
-    border: blue 1px solid;
+    min-width: 70%;
     display: flex;
     flex-direction: column;
 
+}
+#modalTitle {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    color: white;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#modalRightColumn > p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    margin-left: 20px;
 }
 
 .close {
     position: absolute;
     top: 10px;
-    right: 10px;
-    color: red;
+    right: 30px;
+    color: white;
     font-size: 50px;
     font-weight: bold;
     cursor: pointer;
 }
+.close:hover {
+    color: red;
+}
 
-/*<div class="modal" id="myModal">*/
-/*  <div class="modal-content">*/
-/*    <span class="close" onclick="closeModal()">&times;</span>*/
-/*      <div id="modalLeftColumn">*/
-/*          <img id="modalImg" src="" alt="">*/
-/*          <p id="modalImdbScore">Note</p>*/
-/*          <p id="modalYear">Année</p>*/
-/*      </div>*/
-/*      <div id="modalRightColumn">*/
-/*          <h2 id="modalTitle"></h2>*/
-/*          <p id="modalGenres">genres</p>*/
-/*          <p id="modalDescription">description</p>*/
-/*          <p id="modalActors">Acteurs</p>*/
-/*          <p id="modalDirectors">Réalisateurs</p>*/
-/*      </div>*/
-
-/*  </div>*/
