@@ -110,7 +110,6 @@ async function getBestMovies(bestImdbScoresUrl, limit) {
             const additionalMovies = data.results.slice(0, limit - bestMovies.length);
             bestMovies = bestMovies.concat(additionalMovies);
         }
-
         return bestMovies;
     } catch (error) {
         console.error(error);
@@ -126,6 +125,7 @@ async function getBestMoviesInCategory(category = "action", limit = 14) {
      * @returns {array} - An array of movies
      */
     let movies = await fetch(mainUrl + "?sort_by=-imdb_score&genre=" + category);
+    console.log(movies)
     movies = await movies.json();
     let nextPage = movies.next;
     let categoryBestMovies = [];
@@ -144,7 +144,7 @@ async function getBestMoviesInCategory(category = "action", limit = 14) {
         nextPage = response.next;
         movies = response;
     }
-
+    console.log(categoryBestMovies);
     return categoryBestMovies;
 }
 
@@ -152,8 +152,9 @@ async function getBestMoviesInCategory(category = "action", limit = 14) {
 function populateSlider(movies, slider, carousel) {
     const newMovieTemplate = document.getElementById("movie0");
     const sliderContent = document.querySelector(carousel);
-    console.log(movies)
+
     movies.forEach((image, index) => {
+        console.log(image)
         const newMovie = document.createElement("div");
         newMovie.className = "movie";
         newMovie.id = `movie${index}`;
@@ -165,9 +166,13 @@ function populateSlider(movies, slider, carousel) {
 
         const img = document.createElement("img");
         img.className = "movie_img";
-        img.src = image.image_url;
         img.alt = "Movie Image";
+        img.onerror = function () {
+            img.src = "./images/placeholder_movie.png";
+        };
+        img.src = image.image_url;
         newMovie.appendChild(img);
+
         const title = document.createElement("h3");
         title.className = "movie_title";
         title.textContent = image.title;
@@ -266,14 +271,15 @@ function openModal(movie) {
             console.log(data);
             //Update the modal content
             modalImage.src = data.image_url;
-            modalTitle.textContent = data.title;
-            modalDescription.textContent = "Description : " + data.description;
+            modalTitle.textContent = data.original_title;
+            modalDescription.innerHTML = "Description : "+ "<br>" + data.description;
             modalImdbScore.textContent = "Note IMDB : " + data.imdb_score;
-            modalRated.textContent = "Rated : " + data.rated;
+            modalRated.textContent = "Rated : " + (data.rated === "Not rated or unkown rating" ? "Non renseigné" : data.rated);
             modalPublished.textContent = "Date de sortie : " + data.date_published;
             modalDuration.textContent = "Durée : " + data.duration + " minutes"
+            modalBoxOffice.textContent = "Box Office : " + (data.worldwide_gross_income ? data.worldwide_gross_income : "Non renseigné");
             modalGenres.textContent = "Genres : " + data.genres;
-            modalActors.textContent = "Acteurs : " + data.actors;
+            modalActors.innerHTML = "Acteurs : "+"<br>" + data.actors;
             modalDirectors.textContent = "Réalisateurs : " + data.directors;
             modalCountry.textContent = "Pays : " + data.countries.join(", ");
         })

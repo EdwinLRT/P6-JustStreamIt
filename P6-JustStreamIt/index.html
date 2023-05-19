@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" href="./images/favicon.png" type="image/x-icon">
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./images/favicon.png" rel="icon" type="image/x-icon">
     <script src="./javascript/index.js"></script>
-    <script src="https://kit.fontawesome.com/8e94f5f2de.js" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous"
+            src="https://kit.fontawesome.com/8e94f5f2de.js"></script>
     <title>JustStreamIt</title>
 </head>
 <body>
 <header>
     <div class="header-logo">
-        <img src="images/logo-small.png" alt="logo">
+        <img alt="logo" src="images/logo-small.png">
     </div>
     <menu>
         <li>Home</li>
@@ -22,15 +23,15 @@
     <div id="highlightedMovie_container">
         <div id="highlightedMovie_img"></div>
         <div id="highlightedMovie_infos">
-            </div>
+        </div>
     </div>
 </section>
 <section class="carousel_section">
     <h1 class="section-title">Les mieux notés</h1>
     <div class="container-indicators">
-      <div class="indicator active" data-index=0></div>
-      <div class="indicator" data-index=1></div>
-      <div class="indicator" data-index=2></div>
+        <div class="indicator active" data-index=0></div>
+        <div class="indicator" data-index=1></div>
+        <div class="indicator" data-index=2></div>
     </div>
     <div class="carousel-container">
         <div class="carousel" id="carouselBestMovies">
@@ -50,9 +51,9 @@
 <section class="carousel_section">
     <h1 class="section-title">Drame</h1>
     <div class="container-indicators">
-      <div class="indicator active" data-index=0></div>
-      <div class="indicator" data-index=1></div>
-      <div class="indicator" data-index=2></div>
+        <div class="indicator active" data-index=0></div>
+        <div class="indicator" data-index=1></div>
+        <div class="indicator" data-index=2></div>
     </div>
     <div class="carousel-container">
         <div class="carousel" id="carouselCategory1">
@@ -73,30 +74,29 @@
 <section class="carousel_section">
     <h1 class="section-title">Comédie</h1>
     <div class="container-indicators">
-      <div class="indicator active" data-index=0></div>
-      <div class="indicator" data-index=1></div>
-      <div class="indicator" data-index=2></div>
+        <div class="indicator active" data-index=0></div>
+        <div class="indicator" data-index=1></div>
+        <div class="indicator" data-index=2></div>
     </div>
     <div class="carousel-container">
         <div class="carousel" id="carouselCategory2">
 
             <div class="slider" id="carouselInner-category2"></div>
-            </div>
-            <button class="carousel-prev" id="carouselPrev-category2">
-                <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <button class="carousel-next" id="carouselNext-category2">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
         </div>
+        <button class="carousel-prev" id="carouselPrev-category2">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="carousel-next" id="carouselNext-category2">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
     </div>
 </section>
 <section class="carousel_section">
     <h1 class="section-title">Biographies</h1>
     <div class="container-indicators">
-      <div class="indicator active" data-index=0></div>
-      <div class="indicator" data-index=1></div>
-      <div class="indicator" data-index=2></div>
+        <div class="indicator active" data-index=0></div>
+        <div class="indicator" data-index=1></div>
+        <div class="indicator" data-index=2></div>
     </div>
     <div class="carousel-container">
         <div class="carousel" id="carouselCategory3">
@@ -115,29 +115,29 @@
 </section>
 
 <div class="modal" id="myModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-      <div id="modalLeftColumn">
-          <img id="modalImg" src="" alt="">
-          <p id="modalImdbScore">Note IMDB</p>
-          <p id="modalRated">Note</p>
-          <p id="modalPublished">Date de sortie</p>
-          <p id="modalDuration">Durée</p>
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modalLeftColumn">
+            <img alt="affiche de film" id="modalImg" src="./images/placeholder_movie.jpg">
+            <p id="modalImdbScore">Note IMDB</p>
+            <p id="modalRated">Note</p>
+            <p id="modalPublished">Date de sortie</p>
+            <p id="modalDuration">Durée</p>
+            <p id="modalBoxOffice">Résultats Box-office</p>
 
 
-      </div>
-      <div id="modalRightColumn">
-          <h2 id="modalTitle"></h2>
-          <p id="modalGenres">genres</p>
-          <p id="modalDescription">description</p>
-          <p id="modalActors">Acteurs</p>
-          <p id="modalDirectors">Réalisateurs</p>
-          <p id="modalCountries">Pays</p>
-      </div>
+        </div>
+        <div id="modalRightColumn">
+            <h2 id="modalTitle"></h2>
+            <p id="modalGenres">Genres</p>
+            <p id="modalDescription">Description</p>
+            <p id="modalActors">Acteurs</p>
+            <p id="modalDirectors">Réalisateurs</p>
+            <p id="modalCountries">Pays</p>
+        </div>
 
-  </div>
+    </div>
 </div>
-
 
 
 </body>
