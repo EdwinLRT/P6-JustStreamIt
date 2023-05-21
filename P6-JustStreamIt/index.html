@@ -19,14 +19,14 @@
         <li>Categories</li>
     </menu>
 </header>
-<section id="highlightedMovie">
+<div id="highlightedMovie">
     <div id="highlightedMovie_container">
         <div id="highlightedMovie_img"></div>
         <div id="highlightedMovie_infos">
         </div>
     </div>
-</section>
-<section class="carousel_section">
+</div>
+<div class="carousel_section">
     <h1 class="section-title">Les mieux notés</h1>
     <div class="container-indicators">
         <div class="indicator active" data-index=0></div>
@@ -46,9 +46,9 @@
             </button>
         </div>
     </div>
-</section>
+</div>
 
-<section class="carousel_section">
+<div class="carousel_section">
     <h1 class="section-title">Drame</h1>
     <div class="container-indicators">
         <div class="indicator active" data-index=0></div>
@@ -68,10 +68,10 @@
             </button>
         </div>
     </div>
-</section>
+</div>
 
 
-<section class="carousel_section">
+<div class="carousel_section">
     <h1 class="section-title">Comédie</h1>
     <div class="container-indicators">
         <div class="indicator active" data-index=0></div>
@@ -90,8 +90,8 @@
             <i class="fa-solid fa-chevron-right"></i>
         </button>
     </div>
-</section>
-<section class="carousel_section">
+</div>
+<div class="carousel_section">
     <h1 class="section-title">Biographies</h1>
     <div class="container-indicators">
         <div class="indicator active" data-index=0></div>
@@ -112,7 +112,7 @@
             </button>
         </div>
     </div>
-</section>
+</div>
 
 <div class="modal" id="myModal">
     <div class="modal-content">
@@ -128,12 +128,13 @@
 
         </div>
         <div id="modalRightColumn">
-            <h2 id="modalTitle"></h2>
+            <h2 id="modalTitle">Titre</h2>
             <p id="modalGenres">Genres</p>
             <p id="modalDescription">Description</p>
             <p id="modalActors">Acteurs</p>
             <p id="modalDirectors">Réalisateurs</p>
             <p id="modalCountries">Pays</p>
+            <button id='addToList_button'>Ajouter à ma liste</button>
         </div>
 
     </div>

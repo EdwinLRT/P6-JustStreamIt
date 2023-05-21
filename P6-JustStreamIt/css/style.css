@@ -47,6 +47,8 @@ color:#209cd5;
 cursor:pointer
 }
 
+
+
 #highlightedMovie {
 position:relative;
 width:100%;
@@ -77,28 +79,37 @@ margin-top:40px
 #highlightedMovie_container {
 display:flex;
 flex-direction:row;
-justify-content:flex-start;
+justify-content:center;
 align-items:center;
 flex:0 0 5%;
 width:100%
 }
+
 
 #highlightedMovie_img {
 display:flex;
 justify-content:center;
 width:20%;
 height:40vh;
-margin-left:8%
+
+}
+@media (max-width: 1280px) {
+    #highlightedMovie_container{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #highlightedMovie_img > img {
+        min-width: calc(290px);
+    }
+
+
 }
 
 #highlightedMovie_img > img {
 border-radius:8px
 }
 
-#highlightedMovie_img > img:hover {
-box-shadow:4px 4px 4px rgba(0,0,0,0.5);
-cursor:pointer
-}
 
 #highlightedMovie_infos {
 width:62%;
@@ -122,7 +133,6 @@ flex-wrap:wrap
 #highlightedMovie_infos > div {
 display:flex;
 flex-direction:row;
-justify-content:flex-start;
 align-items:center;
 text-overflow:ellipsis;
 margin-left:1vw
@@ -133,7 +143,7 @@ display:flex;
 padding-left:1vw;
 font-family:Oswald,sans-serif;
 font-size:1.1em;
-min-width:10%;
+min-width:12%;
 text-overflow:ellipsis;
 margin:0
 }
@@ -153,16 +163,17 @@ font-weight:lighter;
 text-overflow:ellipsis;
 margin:10px
 }
-
-#highlightedMovie_infos > div:nth-child(7) {
-width:50%;
-display:flex;
-flex-direction:row;
-align-items:center;
-margin-left:55%;
-margin-top:-5%;
-min-height:12vh
+#highlightedMovie_buttons {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
+
+#highlightedMovie_infos > p {
+    display: none;
+}
+
 
 #addToList_button {
 color:#000;
@@ -208,7 +219,7 @@ color:#fff;
 padding:0 2px;
 font-size:.8rem;
 transition:all .8s ease-in-out;
-transform-origin:center center
+transform-origin:center center;
 }
 
 .movie > p.movie_id {
@@ -218,7 +229,8 @@ display:none
 .movie:hover {
 transform:scale(1.05);
 z-index:2;
-transition:all .6s ease-out
+transition:all .6s ease-out;
+cursor: pointer;
 }
 
 .movie img {
@@ -426,7 +438,7 @@ position:absolute;
 top:50%;
 left:50%;
 min-width:70vw;
-min-height:30vh;
+min-height:50vh;
 transform:translate(-50%,-50%);
 background-color:#fff;
 padding:20px;
@@ -483,7 +495,7 @@ margin-top:10px
 }
 
 #modalDescription{
-    min-height: 20%;
+    min-height: 15%;
 }
 
 #modalRightColumn > p {
