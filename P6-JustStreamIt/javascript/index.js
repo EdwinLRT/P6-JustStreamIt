@@ -7,8 +7,10 @@ const bestCategoriesUrls = mainUrl + "?genre=action";
  * Change those parameters to change the display of the home page
  *
  */
-const highlightedMovieUrl = mainUrl + "499549";
 /** Replace the str to change movie : 499549 : Avatar */
+const highlightedMovieId = "499549"
+const highlightedMovieUrl = mainUrl + highlightedMovieId;
+
 const numberOfBestMovies = 16;
 const category1 = "action";
 const numberOfMoviesInCategory1 = 14;
@@ -17,44 +19,6 @@ const numberOfMoviesInCategory2 = 14;
 const category3 = "Comedy";
 const numberOfMoviesInCategory3 = 14;
 
-
-function getBestCategories(url) {
-    fetch(url)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Network response error. API is not responding.");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            bestcategorie1.innerHTML = "<h1>Best Categories</h1>" + "<img src=" + data.results[0].image_url + " alt=" + data.results[0].title + ">";
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-}
-
-async function getAllCategories() {
-
-    let categories = await fetch(categoriesUrl);
-    categories = await categories.json();
-    let nextPage = categories.next
-    let allCategories = [];
-
-    for (const category of categories.results) {
-        allCategories.push(category);
-    }
-    ;
-    while (nextPage !== null) {
-        let response = await fetch(nextPage);
-        response = await response.json();
-        nextPage = response.next;
-        for (const category of response.results) {
-            allCategories.push(category);
-        }
-    }
-    return allCategories;
-}
 
 /**
  * Get the highlighted movie infos
@@ -71,16 +35,22 @@ async function gethighlightedMovieInfos(highlightedMovieUrl) {
         })
         .then((data) => {
             console.log(data);
-            highlightedMovie_img.innerHTML = "<img src=" + data.image_url + " alt=" + data.title + ">";
-            highlightedMovie_infos.innerHTML = "<h2>" + data.title + "</h2>" +
-                "<div>" + "<h6> Synopsis : </h6>" + "<p>" + data.description + "</p>" + "</div>" +
+            highlightedMovie_img.innerHTML = "<img class='movie_img' src='" + data.image_url + "' alt='" + data.title + "'>";
+            highlightedMovie_infos.innerHTML =
+
+                "<h2 class='movie_title' >" + data.title + "</h2>" +
+                "<div>" + "<h6> Synopsis : </h6>" + "<p class='movie_description' >" + data.description + "</p>" + "</div>" +
                 "<div>" + "<h6> Réalisateurs : </h6>" + "<p>" + data.writers + "</p>" + "</div>" +
                 "<div>" + "<h6> Note IMDB :</h6>" + "<p id='highlightedMovie_score'>" + data.avg_vote + "</p>" + "</div>" +
                 "<div>" + "<h6> Genre : </h6>" + "<p>" + data.genres + "</p>" + "</div>" +
                 "<div>" + "<h6> Année : </h6>" + "<p>" + data.year + "</p>" + "</div>" +
-                "<div>" + "<button id='more_button'>" + "Plus d'infos" + "</button>"
+                "<p class='movie_id'>" + data.id + "</p>" +
+                "<div id ='highlightedMovie_buttons' >" + "<button id='more_button'>" + "Plus d'infos" + "</button>"
                 + "<button id='addToList_button'>" + "Ajouter à ma liste" + "</button>" + "</div>";
-
+                const moreButton = document.getElementById('more_button');
+                moreButton.addEventListener('click', () => {
+                   openModal(highlightedMovie_container,highlightedMovieId)
+                });
 
         })
         .catch((error) => {
@@ -89,7 +59,6 @@ async function gethighlightedMovieInfos(highlightedMovieUrl) {
 
 }
 gethighlightedMovieInfos(highlightedMovieUrl)
-
 
 /**
  * Get the best movies of all categories
@@ -125,7 +94,6 @@ async function getBestMoviesInCategory(category = "action", limit = 14) {
      * @returns {array} - An array of movies
      */
     let movies = await fetch(mainUrl + "?sort_by=-imdb_score&genre=" + category);
-    console.log(movies)
     movies = await movies.json();
     let nextPage = movies.next;
     let categoryBestMovies = [];
@@ -144,7 +112,6 @@ async function getBestMoviesInCategory(category = "action", limit = 14) {
         nextPage = response.next;
         movies = response;
     }
-    console.log(categoryBestMovies);
     return categoryBestMovies;
 }
 
@@ -154,7 +121,6 @@ function populateSlider(movies, slider, carousel) {
     const sliderContent = document.querySelector(carousel);
 
     movies.forEach((image, index) => {
-        console.log(image)
         const newMovie = document.createElement("div");
         newMovie.className = "movie";
         newMovie.id = `movie${index}`;
@@ -242,13 +208,12 @@ function btnRight(slider, movies, slider, carousel) {
     }
 }
 
-
 //
 // MODAL
 //
 
 // OPEN MODAL
-function openModal(movie) {
+function openModal(movie, movie_id = "movie_id", movie_img = "movie_img") {
     // Récupérer l'id du film
     var movieId = movie.querySelector(".movie_id").textContent;
     var modal = document.getElementById("myModal");
@@ -282,6 +247,7 @@ function openModal(movie) {
             modalActors.innerHTML = "Acteurs : "+"<br>" + data.actors;
             modalDirectors.textContent = "Réalisateurs : " + data.directors;
             modalCountry.textContent = "Pays : " + data.countries.join(", ");
+            buttonImdb.href = data.imdb_link;
         })
         .catch(error => {
             console.log("Erreur lors de la récupération des données du film :", error);
@@ -290,11 +256,6 @@ function openModal(movie) {
 
     modalImage.src = movie.querySelector(".movie_img").src;
     modalTitle.textContent = movie.querySelector(".movie_title").textContent;
-    // modalImdbScore.textContent = "Note : " + movie.querySelector(".movie_imdbScore").textContent;
-    // modalYear.textContent = "Année : " + movie.querySelector(".movie_year").textContent;
-    // modalGenres.textContent = "Genres : " + movie.querySelector(".movie_genres").textContent;
-    // modalActors.textContent = "Acteurs : " + movie.querySelector(".movie_actors").textContent;
-    // modalDirectors.textContent = "Réalisateurs : " + movie.querySelector(".movie_directors").textContent;
     modalDescription.textContent = movie.querySelector(".movie_description").textContent;
 
     modal.style.display = "block";
@@ -387,6 +348,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
 });
-
-
-
