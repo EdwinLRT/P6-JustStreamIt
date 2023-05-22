@@ -16,7 +16,7 @@ Ouvrir le fichier index.html avec le navigateur de votre choix.
 
 # Images : 
 
-![Page d'accueil](/images/homepage.jpg "homepage") 
-![Sliders](/images/sliders.jpg "sliders") 
-![Fenetre modale](/images/modale.jpg "modale") 
+![Page d'accueil](/P6-JustStreamIt/images/homepage.jpg "homepage") 
+![Sliders](/P6-JustStreamIt/images/sliders.jpg "sliders") 
+![Fenetre modale](/P6-JustStreamIt/images/modale.jpg "modale") 
 
